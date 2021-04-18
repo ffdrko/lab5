@@ -1,0 +1,70 @@
+Activity-1 
+SELECT last_name, hire_date
+FROM emps
+WHERE department_id = (SELECT department_id
+FROM emps
+WHERE last_name = 'Zlotkey');
+Activity-2
+SELECT employee_id, last_name
+FROM emps 
+WHERE salary > (SELECT AVG(salary)
+FROM emps) 
+ORDER BY salary
+Activity-3
+SELECT last_name, salary
+FROM emps
+WHERE manager_id = (SELECT employee_id
+FROM emps
+WHERE last_name = 'King');
+Activity-4
+SELECT employee_id, Last_Name , salary  
+FROM emps  
+WHERE salary > 
+(SELECT AVG (salary)  
+FROM emps ) 
+AND  department_id IN 
+( SELECT department_id  
+FROM emps
+WHERE Last_Name LIKE '%u%');
+Activity-4
+for creating copy table 
+CREATE TABLE employee AS
+SELECT * FROM emps
+new rows
+INSERT INTO `emps` (`Employee_Id`, `First_Name`, `Last_Name`, `Email`, `Phone_Number`, `Hire_Date`, `Job_Id`, `Salary`, `Commission_pct`, `Manager_id`, `Department_Id`) VALUE
+(207, 'fahim', 'faisal', 'ffdrko', '515.123.5050', '0000-00-00', 'ADD_ASST', 4400.00, NULL, 101, 10),
+(208, 'tabib', 'khan', 'ripflex', '515.123.4545', '0000-00-00', 'MK_MAN', 13000.00, NULL, 100, 20),
+(209, 'Ahmed', 'kashef', 'masterx', '603.123.4666', '0000-00-00', 'MK_REP', 6000.00, NULL, 201, 20),
+(210, 'fairooz', 'rahman', 'FR', '515.123.2050', '0000-00-00', 'AC_MGR', 12000.00, NULL, 101, 110),
+(211, 'rejuana', 'islam', 'mimhit', '515.123.9181', '0000-00-00', 'AC_ACCOUNT', 8300.00, NULL, 205, 110);
+for merge the table
+USING company2;
+SELECT *
+FROM emps
+join employee
+USING(Employee_Id)
+Activity-5
+for creating table
+CREATE TABLE emp
+(id NUMBER(7),
+last_name VARCHAR2(25),
+first_name VARCHAR2(25),
+dept_id NUMBER(7));
+	
+DESCRIBE emp
+
+a)ALTER TABLE emp
+MODIFY (last_name VARCHAR2(50));
+
+DESCRIBE emp
+b)CREATE TABLE employees2 AS
+SELECT employee_id id, first_name, last_name, salary,
+department_id dept_id
+FROM employee;
+c)DROP TABLE emp;
+d)RENAME employees2 TO emp;
+e)SELECT first_name
+FROM emp
+DROP first_name;
+
+
